@@ -18,7 +18,7 @@ interface IAppProviderProps {
   children: ReactNode;
 }
 
-export function AppProvider({ children }: IAppProviderProps): JSX.Element {
+export function AppProvider({ children }: IAppProviderProps) {
   const [userInfo, setUserInfo] = useState<IUserInfo>({
     fullname: "",
   });

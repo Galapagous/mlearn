@@ -4,7 +4,7 @@ import Sidebar from "./sidebar";
 const DashboardLayout = () => {
   return (
     <div className="h-screen overflow-hidden w-screen flex items-start">
-      <div className="h-full px-5">
+      <div className="h-full">
         <Sidebar />
       </div>
       <div className="h-screen w-full overflow-auto">

@@ -1,70 +1,13 @@
-// import { Link } from "react-router-dom";
-// import type { ILink } from "../../types/home";
-// import { navigationLinks } from "./data";
-// import { useContext } from "react";
-// import { AppContext } from "../../context/AppContext";
-// import { BiUser } from "react-icons/bi";
-
-// const Header = ({ isDark }: { isDark?: boolean }) => {
-//   const isLoggedIn = false;
-//   const { userInfo, loginStatus } = useContext(AppContext);
-//   return (
-//     <div
-//       className={`px-10 grid grid-cols-5 py-5 ${isDark ? "text-white" : ""}`}
-//     >
-//       <div className="col-span-1 mx-auto">
-//         <h1 className="font-bold">M-Learn</h1>
-//       </div>
-//       <nav className="col-span-3 w-2/3 mx-auto">
-//         <ul className="flex items-center justify-between">
-//           {navigationLinks?.map((link: ILink, index: number) => {
-//             return (
-//               <div
-//                 className="w-full flex items-center justify-evenly"
-//                 key={index}
-//               >
-//                 <Link
-//                   className={`font-semibold ${
-//                     isDark ? "text-neutral-300" : "text-neutral-600"
-//                   }`}
-//                   to={link.link}
-//                 >
-//                   {link.title}
-//                 </Link>
-//               </div>
-//             );
-//           })}
-//         </ul>
-//       </nav>
-//       <div className="col-span-1 mx-auto">
-//         {loginStatus ? (
-//           <div className="flex items-center gap-2">
-//             <BiUser />
-//             <Link className="" to="/dashboard">
-//               {userInfo?.fullName}
-//             </Link>
-//           </div>
-//         ) : (
-//           <Link to="/signin">Sign in</Link>
-//         )}
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default Header;
-
-// ------ version 2 --------
 import { useContext, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import type { ILink } from "../../types/home";
 import { navigationLinks } from "./data";
-import { AppContext } from "../../context/AppContext";
+import { AppContext, type IAppContext } from "../../context/AppContext";
 import { BiUser } from "react-icons/bi";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
 
 const Header = ({ isDark }: { isDark?: boolean }) => {
-  const { userInfo, loginStatus } = useContext(AppContext);
+  const { userInfo, loginStatus } = useContext(AppContext) as IAppContext;
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -98,7 +41,7 @@ const Header = ({ isDark }: { isDark?: boolean }) => {
           {loginStatus ? (
             <Link to="/dashboard" className="flex items-center gap-2">
               <BiUser />
-              {userInfo?.fullName}
+              {userInfo?.fullname}
             </Link>
           ) : (
             <Link to="/signin" className="font-medium hover:text-blue-500">
@@ -147,7 +90,7 @@ const Header = ({ isDark }: { isDark?: boolean }) => {
             {loginStatus ? (
               <Link to="/dashboard" className="flex items-center gap-2">
                 <BiUser />
-                {userInfo?.fullName}
+                {userInfo?.fullname}
               </Link>
             ) : (
               <Link to="/signin" className="font-medium hover:text-blue-500">
